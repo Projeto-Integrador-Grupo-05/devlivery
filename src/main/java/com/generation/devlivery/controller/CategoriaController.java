@@ -37,13 +37,13 @@ public class CategoriaController {
 		return ResponseEntity.ok(categoriaRepository.findAll());
 	}
 	
-	@GetMapping("/id/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Categoria> getById(@PathVariable Long id) {
 		return categoriaRepository.findById(id).map(resposta -> ResponseEntity.ok(resposta))
 				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
 
-	@GetMapping("/categoria/{categoria}")
+	@GetMapping("/nome/{categoria}")
     public ResponseEntity<List<Categoria>> getByNome(@PathVariable String categoria){
         return ResponseEntity.ok(categoriaRepository.findAllByNomeCategoriaContainingIgnoreCase(categoria));
 	}
