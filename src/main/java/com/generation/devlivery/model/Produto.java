@@ -25,11 +25,10 @@ public class Produto {
     private Boolean saudavel; 
 
     private BigDecimal preco;
-    
-    @ManyToOne
-	@JsonIgnoreProperties("produtos")
-	private Categoria categoria;
 
+    @ManyToOne
+    @JsonIgnoreProperties("produto")
+    private Categoria categoria;
     
     public Long getIdProduto() {
         return idProduto;
@@ -59,9 +58,9 @@ public class Produto {
         return saudavel;
     }
 
-    public void setTipo(Boolean tipo) {
-        this.saudavel = tipo;
-    }
+    	public void setSaudavel(Boolean saudavel) {
+		this.saudavel = saudavel;
+	}
 
     public BigDecimal getPreco() {
         return preco;
@@ -70,7 +69,7 @@ public class Produto {
     public void setPreco(BigDecimal preco) {
         this.preco = preco;
     }
-    
+
 	public Categoria getCategoria() {
 		return categoria;
 	}
@@ -78,4 +77,5 @@ public class Produto {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
+
 }
