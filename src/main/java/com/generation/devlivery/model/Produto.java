@@ -4,8 +4,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.math.BigDecimal;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "tb_produto")
@@ -22,9 +25,10 @@ public class Produto {
     private Boolean saudavel; 
 
     private BigDecimal preco;
-//  @ManyToOne
-//	@JsonIgnoreProperties("produtos")
-//	private Categoria categoria;
+    
+    @ManyToOne
+	@JsonIgnoreProperties("produtos")
+	private Categoria categoria;
 
     
     public Long getIdProduto() {
@@ -67,12 +71,11 @@ public class Produto {
         this.preco = preco;
     }
     
-	/*public Categoria getCategoria() {
+	public Categoria getCategoria() {
 		return categoria;
 	}
 
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-}*/
 }
