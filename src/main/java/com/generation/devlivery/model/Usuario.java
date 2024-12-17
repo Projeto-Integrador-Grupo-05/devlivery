@@ -1,9 +1,16 @@
 package com.generation.devlivery.model;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -35,8 +42,7 @@ public class Usuario {
 	@NotBlank(message = "O endereço é obrigatório!")
 	@Size(min = 5, max = 255, message = "O endereço deve ter entre 5 e 255 caracteres")
 	private String endereco;
-
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -95,7 +101,5 @@ public class Usuario {
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
-	
-	
 	
 }
