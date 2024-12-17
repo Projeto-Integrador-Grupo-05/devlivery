@@ -58,9 +58,9 @@ public class Produto {
         return saudavel;
     }
 
-    public void setTipo(Boolean tipo) {
-        this.saudavel = tipo;
-    }
+    	public void setSaudavel(Boolean saudavel) {
+		this.saudavel = saudavel;
+	}
 
     public BigDecimal getPreco() {
         return preco;
@@ -78,9 +78,4 @@ public class Produto {
 		this.categoria = categoria;
 	}
 
-	public void setSaudavel(Boolean saudavel) {
-		this.saudavel = saudavel;
-	}
-    
-    
 }
