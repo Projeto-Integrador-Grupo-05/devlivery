@@ -19,9 +19,12 @@ public class Produto {
 
     private Integer calorias; 
 
-    private Boolean tipo; 
+    private Boolean saudavel; 
 
     private BigDecimal preco;
+//  @ManyToOne
+//	@JsonIgnoreProperties("produtos")
+//	private Categoria categoria;
 
     
     public Long getIdProduto() {
@@ -48,12 +51,12 @@ public class Produto {
         this.calorias = calorias;
     }
 
-    public Boolean getTipo() {
-        return tipo;
+    public Boolean getSaudavel() {
+        return saudavel;
     }
 
     public void setTipo(Boolean tipo) {
-        this.tipo = tipo;
+        this.saudavel = tipo;
     }
 
     public BigDecimal getPreco() {
@@ -63,4 +66,13 @@ public class Produto {
     public void setPreco(BigDecimal preco) {
         this.preco = preco;
     }
+    
+	/*public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+}*/
 }
