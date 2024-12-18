@@ -1,13 +1,16 @@
 package com.generation.devlivery.model;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -39,10 +42,23 @@ public class Usuario {
 	@NotBlank(message = "O endereço é obrigatório!")
 	@Size(min = 5, max = 255, message = "O endereço deve ter entre 5 e 255 caracteres")
 	private String endereco;
+
+	public Usuario(Long id, String nome, String email, String senha, String tipo, String endereco) {
+		this.id = id;
+		this.nome = nome;
+		this.email = email;
+		this.senha = senha;
+		this.tipo = tipo;
+		this.endereco = endereco;
+	}
 	
-	@ManyToOne
-	@JsonIgnoreProperties("usuarios")
-	private Produto produto;
+	public Usuario() {
+		
+	}
+
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("usuario")
+	private List<Produto> produto;
 
 	public Long getId() {
 		return id;
@@ -92,11 +108,11 @@ public class Usuario {
 		this.endereco = endereco;
 	}
 
-	public Produto getProduto() {
+	public List<Produto> getProduto() {
 		return produto;
 	}
 
-	public void setProduto(Produto produto) {
+	public void setProdutos(List<Produto> produto) {
 		this.produto = produto;
 	}
 

@@ -24,7 +24,6 @@ public class ProdutoService {
 	
 	private boolean isProdutoSaudavel(Produto produto) {
         return Boolean.TRUE.equals(produto.getSaudavel()) || 
-               (produto.getCalorias() != null && produto.getCalorias() < 200) ||
-               (produto.getPreco() != null && produto.getPreco().compareTo(new java.math.BigDecimal("10.00")) < 0);
+               (produto.getSaudavel() != null && produto.getSaudavel() == true);
     }
 }
