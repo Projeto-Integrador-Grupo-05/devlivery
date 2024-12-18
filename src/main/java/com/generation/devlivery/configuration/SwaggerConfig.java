@@ -20,7 +20,7 @@ public class SwaggerConfig {
             .info(new Info()
                 .title("Projeto Devlivery")
                 .description("Projeto Devlivery - Rafael Macedo - Emerson Marques - Vinícius Aquino - Andre Lins "
-                		+ "- Naiara Costa - Thayná Simões")
+                		+ "- Naiara Costa - Thayná Simões - Nayara Renata")
                 .version("v0.0.1")
                 .license(new License()
                     .name("Github")
