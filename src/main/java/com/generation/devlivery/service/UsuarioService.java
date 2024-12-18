@@ -1,9 +1,6 @@
 package com.generation.devlivery.service;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,7 +10,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.generation.devlivery.model.Produto;
 import com.generation.devlivery.model.Usuario;
 import com.generation.devlivery.model.UsuarioLogin;
 import com.generation.devlivery.repository.UsuarioRepository;
@@ -90,16 +86,6 @@ public class UsuarioService {
 
 	private String gerarToken(String usuario) {
 		return "Bearer " + jwtService.generateToken(usuario);
-	}
-	
-	public List<Produto> recomendarProdutosSaudaveis(List<Produto> produtos) {
-		if (produtos == null || produtos.isEmpty()) {
-			throw new ResponseStatusException(HttpStatus.NO_CONTENT, "Nenhum produto encontrado");
-		}
-		
-		return produtos.stream()
-				.filter(produto -> Optional.ofNullable(produto.getSaudavel()).orElse(false))
-				.collect(Collectors.toList());
 	}
 
 }

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import com.generation.devlivery.model.Produto;
 import com.generation.devlivery.repository.ProdutoRepository;
+import com.generation.devlivery.service.ProdutoService;
+
 import jakarta.validation.Valid;
 
 @RestController
@@ -18,6 +20,9 @@ public class ProdutoController {
 
     @Autowired
     private ProdutoRepository produtoRepository;
+    
+    @Autowired
+    private ProdutoService produtoService;
 
     @GetMapping
     public ResponseEntity<List<Produto>> getAll() {
@@ -63,4 +68,12 @@ public class ProdutoController {
         
         produtoRepository.deleteById(id);
     }
+    
+    @GetMapping("/produtos-saudaveis")
+	public ResponseEntity<List<Produto>> getProdutosSaudaveis() {
+	    List<Produto> todosProdutos = produtoRepository.findAll(); 
+	    List<Produto> produtosSaudaveis = produtoService.recomendarProdutosSaudaveis(todosProdutos);
+
+	    return ResponseEntity.ok(produtosSaudaveis);
+	}
 }
