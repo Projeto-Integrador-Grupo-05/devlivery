@@ -85,13 +85,5 @@ public class UsuarioController {
 		
 		usuarioRepository.delete(usuario.get());
 	}
-	
-	@GetMapping("/produtos-saudaveis")
-	public ResponseEntity<List<Produto>> getProdutosSaudaveis() {
-	    List<Produto> todosProdutos = produtoRepository.findAll(); 
-	    List<Produto> produtosSaudaveis = usuarioService.recomendarProdutosSaudaveis(todosProdutos);
-
-	    return ResponseEntity.ok(produtosSaudaveis);
-	}
 
 }

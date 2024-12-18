@@ -1,10 +1,13 @@
 package com.generation.devlivery.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -36,6 +39,10 @@ public class Usuario {
 	@NotBlank(message = "O endereço é obrigatório!")
 	@Size(min = 5, max = 255, message = "O endereço deve ter entre 5 e 255 caracteres")
 	private String endereco;
+	
+	@ManyToOne
+	@JsonIgnoreProperties("usuarios")
+	private Produto produto;
 
 	public Long getId() {
 		return id;
@@ -83,6 +90,14 @@ public class Usuario {
 
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
+	}
+
+	public Produto getProduto() {
+		return produto;
+	}
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
 	}
 
 }
