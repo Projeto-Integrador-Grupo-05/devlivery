@@ -4,7 +4,9 @@
 
 - [Apresentação](https://github.com/Projeto-Integrador-Grupo-05/devlivery/blob/main/Docs/DevLivery.pdf)
 
-- [DER]()
+- [Deploy](https://devlivery.onrender.com/swagger-ui/index.html#/produto-controller/getProdutosSaudaveis)
+
+- [DER](https://github.com/Projeto-Integrador-Grupo-05/devlivery/blob/main/Docs/Devlivery.mdj)
 
 - [Escopo do Projeto](https://github.com/Projeto-Integrador-Grupo-05/devlivery/blob/main/Docs/Escopo%20do%20Projeto%20Devlivery.pdf)
 
