@@ -1,17 +1,14 @@
 package com.generation.devlivery.model;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import java.math.BigDecimal;
-import java.util.List;
+import jakarta.validation.constraints.NotNull;
 
+import java.math.BigDecimal;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -22,14 +19,21 @@ public class Produto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idProduto;  
     
+    @NotNull
     private String nomeProduto;
 
     private Integer calorias; 
-
+    
+    @NotNull
     private Boolean saudavel; 
-
+    
+    @NotNull
     private BigDecimal preco;
-
+    
+    private String imagem;
+    
+    
+    @NotNull
     @ManyToOne
     @JsonIgnoreProperties("produto")
     private Categoria categoria;
