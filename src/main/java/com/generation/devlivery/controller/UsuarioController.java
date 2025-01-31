@@ -59,10 +59,22 @@ public class UsuarioController {
     
 	@PostMapping("/cadastrar")
 	public ResponseEntity<Usuario> postUsuario(@RequestBody @Valid Usuario usuario) {
-		return usuarioService.cadastrarUsuario(usuario)
-			.map(resposta -> ResponseEntity.status(HttpStatus.CREATED).body(resposta))
-			.orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
+	    // Verifica se a lista de produtos não é nula nem vazia
+	    if (usuario.getProduto() != null && !usuario.getProduto().isEmpty()) {
+	        usuario.getProduto().forEach(produto -> {
+	            // Busca o produto pelo ID no banco de dados
+	            Produto produtoExistente = produtoRepository.findById(produto.getIdProduto())
+	                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Produto não encontrado: ID " + produto.getIdProduto()));
+	            produtoExistente.setUsuario(usuario); // Associa o produto ao usuário
+	        });
+	    }
+
+	    // Chama o serviço para cadastrar o usuário
+	    return usuarioService.cadastrarUsuario(usuario)
+	            .map(resposta -> ResponseEntity.status(HttpStatus.CREATED).body(resposta))
+	            .orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
 	}
+
 	
 	@PutMapping("/atualizar")
 	public ResponseEntity<Usuario> putUsuario(@Valid @RequestBody Usuario usuario) {

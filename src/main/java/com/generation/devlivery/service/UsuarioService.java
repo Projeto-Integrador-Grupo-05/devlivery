@@ -30,6 +30,11 @@ public class UsuarioService {
 		if (usuarioRepository.findByEmail(usuario.getEmail()).isPresent())
 			return Optional.empty();
 		usuario.setSenha(criptografarSenha(usuario.getSenha()));
+		
+		if (usuario.getProduto() != null) {
+	        usuario.getProduto().forEach(produto -> produto.setUsuario(usuario));
+	    }
+		
 		return Optional.of(usuarioRepository.save(usuario));
 
 	}
@@ -86,6 +91,13 @@ public class UsuarioService {
 
 	private String gerarToken(String usuario) {
 		return "Bearer " + jwtService.generateToken(usuario);
+	}
+	
+	public Usuario salvarUsuario(Usuario usuario) {
+	    if (usuario.getProduto() != null) {
+	        usuario.getProduto().forEach(produto -> produto.setUsuario(usuario));
+	    }
+	    return usuarioRepository.save(usuario);
 	}
 
 }
