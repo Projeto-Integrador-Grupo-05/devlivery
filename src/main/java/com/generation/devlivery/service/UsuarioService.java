@@ -9,7 +9,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
 import com.generation.devlivery.model.Usuario;
 import com.generation.devlivery.model.UsuarioLogin;
 import com.generation.devlivery.repository.UsuarioRepository;
@@ -30,10 +29,6 @@ public class UsuarioService {
 		if (usuarioRepository.findByEmail(usuario.getEmail()).isPresent())
 			return Optional.empty();
 		usuario.setSenha(criptografarSenha(usuario.getSenha()));
-		
-		if (usuario.getProduto() != null) {
-	        usuario.getProduto().forEach(produto -> produto.setUsuario(usuario));
-	    }
 		
 		return Optional.of(usuarioRepository.save(usuario));
 
@@ -94,9 +89,7 @@ public class UsuarioService {
 	}
 	
 	public Usuario salvarUsuario(Usuario usuario) {
-	    if (usuario.getProduto() != null) {
-	        usuario.getProduto().forEach(produto -> produto.setUsuario(usuario));
-	    }
+
 	    return usuarioRepository.save(usuario);
 	}
 

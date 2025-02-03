@@ -2,7 +2,6 @@ package com.generation.devlivery.controller;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,14 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
-
-import com.generation.devlivery.model.Produto;
 import com.generation.devlivery.model.Usuario;
 import com.generation.devlivery.model.UsuarioLogin;
-import com.generation.devlivery.repository.ProdutoRepository;
 import com.generation.devlivery.repository.UsuarioRepository;
 import com.generation.devlivery.service.UsuarioService;
 import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/usuarios")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -33,9 +30,7 @@ public class UsuarioController {
 	private UsuarioService usuarioService;
 	@Autowired
 	private UsuarioRepository usuarioRepository;
-	@Autowired
-	private ProdutoRepository produtoRepository;
-	
+		
 	@GetMapping("/all")
 	public ResponseEntity <List<Usuario>> getAll(){
 		
@@ -59,16 +54,6 @@ public class UsuarioController {
     
 	@PostMapping("/cadastrar")
 	public ResponseEntity<Usuario> postUsuario(@RequestBody @Valid Usuario usuario) {
-	    // Verifica se a lista de produtos não é nula nem vazia
-	    if (usuario.getProduto() != null && !usuario.getProduto().isEmpty()) {
-	        usuario.getProduto().forEach(produto -> {
-	            // Busca o produto pelo ID no banco de dados
-	            Produto produtoExistente = produtoRepository.findById(produto.getIdProduto())
-	                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Produto não encontrado: ID " + produto.getIdProduto()));
-	            produtoExistente.setUsuario(usuario); // Associa o produto ao usuário
-	        });
-	    }
-
 	    // Chama o serviço para cadastrar o usuário
 	    return usuarioService.cadastrarUsuario(usuario)
 	            .map(resposta -> ResponseEntity.status(HttpStatus.CREATED).body(resposta))
