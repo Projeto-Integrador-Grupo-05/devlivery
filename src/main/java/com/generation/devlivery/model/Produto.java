@@ -32,7 +32,6 @@ public class Produto {
     
     private String imagem;
     
-    
     @NotNull
     @ManyToOne
     @JsonIgnoreProperties("produto")
@@ -98,5 +97,11 @@ public class Produto {
 		this.usuario = usuario;
 	}
 
+	public String getImagem() {
+		return imagem;
+	}
 
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
+	}
 }

@@ -42,6 +42,8 @@ public class Usuario {
 	@NotBlank(message = "O endereço é obrigatório!")
 	@Size(min = 5, max = 255, message = "O endereço deve ter entre 5 e 255 caracteres")
 	private String endereco;
+	
+	private String foto;
 
 	public Usuario(Long id, String nome, String email, String senha, String tipo, String endereco) {
 		this.id = id;
@@ -108,12 +110,12 @@ public class Usuario {
 		this.endereco = endereco;
 	}
 
-	public List<Produto> getProduto() {
-		return produto;
+	public String getFoto() {
+		return foto;
 	}
 
-	public void setProdutos(List<Produto> produto) {
-		this.produto = produto;
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 
 }
